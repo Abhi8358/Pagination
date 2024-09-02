@@ -37,6 +37,19 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            buildConfigField(
+                "String",
+                "PEXELS_BASE_URL",
+                secretsProperties["PEXELS_BASE_URL"].toString()
+            )
+            buildConfigField(
+                "String",
+                "PEXELS_API_KEY",
+                secretsProperties["PEXELS_API_KEY"].toString()
+            )
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -48,6 +61,7 @@ android {
     buildFeatures {
         compose = true
         dataBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"

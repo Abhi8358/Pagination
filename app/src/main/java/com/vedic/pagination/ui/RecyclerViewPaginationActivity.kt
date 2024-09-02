@@ -1,9 +1,10 @@
-package com.vedic.pagination
+package com.vedic.pagination.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.vedic.pagination.R
 import com.vedic.pagination.databinding.ActivityRecyclerViewPaginationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,7 +15,5 @@ class RecyclerViewPaginationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recycler_view_pagination)
-
-
     }
 }

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pagination</string>
+    <string name="no_internet">No Internet</string>
+    <string name="something_went_wrong">SomeThing Went Wrong</string>
+    <string name="server_error_try_after_some_time">Server error, Please try after sometime</string>
 </resources>

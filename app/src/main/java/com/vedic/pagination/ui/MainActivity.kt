@@ -1,4 +1,4 @@
-package com.vedic.pagination
+package com.vedic.pagination.ui
 
 import android.content.Intent
 import android.os.Bundle

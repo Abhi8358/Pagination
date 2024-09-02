@@ -2,6 +2,7 @@ package com.vedic.pagination.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.vedic.pagination.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,19 +25,19 @@ class ProvideRetrofit {
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val original = chain.request()
-                var requestBuilder = original.newBuilder().header(
-                    "Authorization", "BuildConfig.PEXELS_API_KEY"
+                val requestBuilder = original.newBuilder().header(
+                    "Authorization", BuildConfig.PEXELS_API_KEY
                 ) // Replace 'YOUR_API_KEY' with your actual API key
 
-                var request = requestBuilder.build()
-                var response = chain.proceed(request)
+                val request = requestBuilder.build()
+                val response = chain.proceed(request)
                 response
             }
 
         return Retrofit.Builder()
             .client(apiKeyInterceptor.build())
             .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .baseUrl("BuildConfig.PEXELS_BASE_URL")
+            .baseUrl(BuildConfig.PEXELS_BASE_URL)
             .build()
     }
 

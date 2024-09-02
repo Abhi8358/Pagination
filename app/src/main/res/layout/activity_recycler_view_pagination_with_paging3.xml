@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecyclerViewPaginationActivityWithPaging3">
+    tools:context=".ui.RecyclerViewPaginationActivityWithPaging3">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

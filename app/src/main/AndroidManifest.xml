@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:name=".PaginationApplication"
@@ -14,15 +15,15 @@
         android:theme="@style/Theme.Pagination"
         tools:targetApi="31">
         <activity
-            android:name=".RecyclerViewPaginationActivityWithPaging3"
+            android:name=".ui.RecyclerViewPaginationActivityWithPaging3"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".RecyclerViewPaginationActivity"
+            android:name=".ui.RecyclerViewPaginationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Pagination">
