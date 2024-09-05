@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class PhotoViewData(
     val alt: String?,
-    @SerializedName("avgColor")
-    val avg_color: String?,
+    @SerializedName("avg_color")
+    val avgColor: String?,
     val height: Int?,
     val id: Int?,
     val liked: Boolean?,
     val photographer: String?,
-    @SerializedName("photographerId")
-    val photographer_id: Int?,
-    @SerializedName("photographerUrl")
-    val photographer_url: String?,
+    @SerializedName("photographer_id")
+    val photographerId: Int?,
+    @SerializedName("photographer_url")
+    val photographerUrl: String?,
     val src: SrcViewData?,
     val url: String?,
     val width: Int?

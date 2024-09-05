@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -21,8 +22,13 @@ class ProvideRetrofit {
     @Singleton
     fun provideRetrofitInstance(): Retrofit {
 
+        val httpLoggingIntercepted = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BASIC
+        }
+
         val apiKeyInterceptor = OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(httpLoggingIntercepted)
             .addInterceptor { chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder().header(
@@ -36,8 +42,8 @@ class ProvideRetrofit {
 
         return Retrofit.Builder()
             .client(apiKeyInterceptor.build())
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .baseUrl(BuildConfig.PEXELS_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://api.pexels.com/")
             .build()
     }
 

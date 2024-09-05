@@ -84,6 +84,8 @@ dependencies {
     implementation(libs.dagger.hilt)
     kapt(libs.hilt.compiler)
     implementation(libs.retrofit)
+    implementation(libs.glide)
+    implementation(libs.logging.interceptor)
     implementation(libs.gson.convertor)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
