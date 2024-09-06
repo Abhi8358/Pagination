@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Pagination"
 include(":app")
- 
+include(":imageLoading")

@@ -1,6 +1,5 @@
 package com.vedic.pagination.core
 
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.ref.WeakReference
@@ -42,9 +41,9 @@ class RecyclerViewPaginationScrollListener(private val layoutManager: LinearLayo
         val visibleItemCount: Int = layoutManager.childCount
         val totalItemCount: Int = layoutManager.itemCount
         val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()
-        Log.d("Rawat", "visibleCOunt :- $visibleItemCount  && totalItemCount -: $totalItemCount  firstVisibleItemPosition -: $firstVisibleItemPosition  last :- ${layoutManager.findLastVisibleItemPosition()}")
+        //Log.d("Rawat", "visibleCOunt :- $visibleItemCount  && totalItemCount -: $totalItemCount  firstVisibleItemPosition -: $firstVisibleItemPosition  last :- ${layoutManager.findLastVisibleItemPosition()}")
         recyclerViewEventHandler?.get()?.let { recyclerViewEventHandler ->
-            if (!recyclerViewEventHandler.isLoading() && !recyclerViewEventHandler.isLastPage() && recyclerViewEventHandler.isLastRequestSuccess() ) {
+            if (!recyclerViewEventHandler.isLoading() && !recyclerViewEventHandler.isLastPage() && recyclerViewEventHandler.isLastRequestSuccess()) {
                 if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0 && totalItemCountInLastRequest != totalItemCount) {
                     totalItemCountInLastRequest = totalItemCount
                     recyclerViewEventHandler.loadMoreItems()
