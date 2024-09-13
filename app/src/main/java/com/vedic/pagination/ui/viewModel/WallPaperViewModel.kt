@@ -3,6 +3,7 @@ package com.vedic.pagination.ui.viewModel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vedic.pagination.core.ErrorStringType
 import com.vedic.pagination.core.LoadingType
 import com.vedic.pagination.core.UiStateResource
 import com.vedic.pagination.data.models.PhotoViewData
@@ -16,9 +17,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WallPaperViewModel @Inject constructor(private val wallPaperUseCase: WallPaperUseCase) : ViewModel() {
+class WallPaperViewModel @Inject constructor(private val wallPaperUseCase: WallPaperUseCase) :
+    ViewModel() {
 
-    private var pageNumber:Int = 1
+    private var pageNumber: Int = 1
     private var lastFetchedPageNumber = -1
     var isLastPage = false
     private var _uiState: MutableStateFlow<UiStateResource<WallPaperViewData>> =
@@ -36,25 +38,29 @@ class WallPaperViewModel @Inject constructor(private val wallPaperUseCase: WallP
     fun fetchWallPaper() {
         viewModelScope.launch {
             Log.d("Abhishek", "pageNumber -: $pageNumber")
-            wallPaperUseCase.getWallPapers(pageNumber, 20).collectLatest { state ->
-                _uiState.value = state
-                when (state) {
-                    is UiStateResource.Success -> {
-                        val listOfWallPaper = mutableListOf<PhotoViewData?>()
-                        listOfWallPaper.addAll(wallPaperList.value)
-                        listOfWallPaper.addAll(state.result.photos ?: emptyList())
-                        _wallPaperList.value = listOfWallPaper.toList()
-                        isLastPage = state.result.nextPage == null
-                        pageNumber =
-                            if (state.result.nextPage != null) pageNumber + 1 else pageNumber
-                            Log.d("Abhishek", "isLastPage -: $isLastPage  pageNumber -: $pageNumber")
-                    }
-
-                    else -> {
-                    }
+            wallPaperUseCase.getWallPapers(
+                pageNumber,
+                20,
+                start = { loadingType: LoadingType ->
+                    _uiState.value = UiStateResource.Loading(loadingType)
+                },
+                onError = { errorStringType: ErrorStringType ->
+                    _uiState.value = UiStateResource.Error(errorStringType)
                 }
+            ).collectLatest { wallPaperViewData ->
+                val listOfWallPaper = mutableListOf<PhotoViewData?>()
+                listOfWallPaper.addAll(wallPaperList.value)
+                listOfWallPaper.addAll(wallPaperViewData.photos ?: emptyList())
+                _uiState.value = UiStateResource.Success(wallPaperViewData)
+                _wallPaperList.value = listOfWallPaper.toList()
+                isLastPage = wallPaperViewData.nextPage == null
+                pageNumber =
+                    if (wallPaperViewData.nextPage != null) pageNumber + 1 else pageNumber
+                Log.d(
+                    "Abhishek",
+                    "isLastPage -: $isLastPage  pageNumber -: $pageNumber"
+                )
             }
         }
     }
-
 }

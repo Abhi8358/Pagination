@@ -43,7 +43,7 @@ class RecyclerViewPaginationActivity : AppCompatActivity(), RecyclerViewEventHan
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 wallPaperViewModel.wallPaperList.collectLatest {
-                    Log.d("Abhishek", "collec items size ${it.size}")
+                    Log.d("Abhishek", "collect items size ${it.size}")
                     wallPaperAdapter.differ.submitList(it)
                 }
             }
