@@ -36,6 +36,7 @@ abstract class BaseRepository(
             val response = getApiResponse.invoke()
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
+                throw OtherException()
                 emit(responseBody)
             } else if (response.code() in 500..507) {
                 throw ServerException()

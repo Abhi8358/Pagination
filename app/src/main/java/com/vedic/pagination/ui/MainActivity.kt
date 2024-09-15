@@ -45,6 +45,9 @@ class MainActivity : ComponentActivity() {
                                 this@MainActivity,
                                 RecyclerViewPaginationActivity::class.java
                             )
+                            /*val bundle = Bundle()
+                                bundle.putString("key", "Abhishek")
+                            intent.putExtras(bundle)*/
                             startActivity(intent)
                         }) {
                             Text(text = "Paging without library in RecyclerView")

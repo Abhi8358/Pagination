@@ -36,7 +36,7 @@ class WallPaperRepoImpl @Inject constructor(
         pageNumber: Int,
         itemCount: Int,
         itemName: String
-    ): Flow<UiStateResource<WallPaperViewData>> {
+    ): Flow<WallPaperViewData> {
         TODO("Not yet implemented")
     }
 }
