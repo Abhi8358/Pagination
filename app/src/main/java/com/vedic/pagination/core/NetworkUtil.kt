@@ -45,6 +45,10 @@ class NetworkUtils @Inject constructor(@ApplicationContext context: Context) {
     }
 
     fun isNetworkConnected(): Boolean {
+        val network = connectivityManager?.activeNetwork
+        val capabilities = connectivityManager?.getNetworkCapabilities(network)
+        return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) ?: false
+
         return connectivityManager?.activeNetwork != null
     }
 }

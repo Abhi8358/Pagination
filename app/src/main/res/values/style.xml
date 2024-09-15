@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ErrorTextStyle" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ErrorButtonStyle" parent="ThemeOverlay.Material3.Button.ElevatedButton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="color">@color/cardview_light_background</item>
+    </style>
+</resources>

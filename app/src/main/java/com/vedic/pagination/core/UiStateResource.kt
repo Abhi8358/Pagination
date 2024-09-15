@@ -2,10 +2,10 @@ package com.vedic.pagination.core
 
 import androidx.annotation.StringRes
 
-sealed interface UiStateResource<out T> {
-    data class Loading(val loadingType: LoadingType) : UiStateResource<Nothing>
-    data class Error(val stringType: ErrorStringType) : UiStateResource<Nothing>
-    data class Success<T>(val result: T) : UiStateResource<T>
+sealed interface UiStateResource {
+    data class Loading(val loadingType: LoadingType) : UiStateResource
+    data class Error(val stringType: ErrorStringType, val isFirstPage: Boolean = false) : UiStateResource
+    data object Success : UiStateResource
 }
 
 enum class LoadingType {

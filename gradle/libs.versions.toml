@@ -48,5 +48,6 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+android-library = { id = "com.android.library", version.ref = "agp" }
 
 

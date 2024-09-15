@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vedic.imageloading.ImageLoader
+import com.vedic.imageloading.ImageSource
 import com.vedic.pagination.data.models.PhotoViewData
 import com.vedic.pagination.databinding.PhotoViewBinding
 import javax.inject.Inject
@@ -59,7 +61,12 @@ class WallPaperAdapter @Inject constructor() :
         fun init(photoViewData: PhotoViewData) {
             //Log.d("Abhishek ", "inside init ${photoViewData.src?.original}")
             photoViewBinding.apply {
-                Glide.with(photoViewBinding.root.context).load(photoViewData.src?.large ?: photoViewData.src?.original).into(this.photoId)
+                val imageUrl = photoViewData.src?.large ?: photoViewData.src?.original
+                imageUrl?.let {
+                    ImageLoader.loadImage(this.photoId, ImageSource.Url(it))
+                }
+
+               // Glide.with(photoViewBinding.root.context).load(photoViewData.src?.large ?: photoViewData.src?.original).into(this.photoId)
             }
         }
     }
